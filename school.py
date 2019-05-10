@@ -1,16 +1,26 @@
 import copy
 
-class School():
-    def __init__(self, name, roster = {}):
+class School:
+
+    def __init__(self, name):
         self.name = name
-        self.roster = roster
-        roster[9] = []
-        roster[10] = []
-        roster[11] = []
-        roster[12] = []
-     
+        self._roster = {}
+
     def roster(self):
-        return self.roster
-    
+        return self._roster
+
     def add_student(self, name, grade):
-        self.roster[grade].append(name)
+        if grade in self._roster:
+            self._roster[grade].append(name)
+        else:
+            self._roster[grade] = [name]
+        return self._roster
+
+    def grade(self, grade):
+        return self._roster[grade]
+
+    def sort_roster(self):
+        new_dict = copy.deepcopy(self._roster)
+        for key in new_dict:
+            new_dict[key].sort()
+        return new_dict
