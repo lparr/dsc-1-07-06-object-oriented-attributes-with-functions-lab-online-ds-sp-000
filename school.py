@@ -1,4 +1,6 @@
+import copy
+
 class School():
-    def __init__(self, name, roster={}):
+    def __init__(self, name):
         self.name = name
-        self.roster = roster
+        self.roster = {}
